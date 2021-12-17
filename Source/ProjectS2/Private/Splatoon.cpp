@@ -6,6 +6,7 @@
 #include "Components/DecalComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include <ProjectS2/ProjectS2Character.h>
 
 // Sets default values
 ASplatoon::ASplatoon()
