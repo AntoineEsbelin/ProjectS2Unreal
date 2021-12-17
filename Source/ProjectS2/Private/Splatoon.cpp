@@ -43,11 +43,7 @@ ASplatoon::ASplatoon()
 void ASplatoon::BeginPlay()
 {
 	Super::BeginPlay();
-    // Envie de me suicider que ce truc fasse crash unreal
-    // la dernière ligne qui est censée faire fonctionner mon paintball fait crash unreal à partir du moment où je fais clic droit et je n'arrive vraiment pas à voir 
-    // d'où vient l'erreur. Si tu trouves la réponse et que tu peux me la dire après avoir corrigé ça m'intéresse .
-    // Aled
-    // MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASplatoon::OnBeginOverlap);
+     MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASplatoon::OnBeginOverlap);
 	
 }
 
