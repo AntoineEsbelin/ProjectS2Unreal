@@ -43,7 +43,8 @@ ASplatoon::ASplatoon()
 void ASplatoon::BeginPlay()
 {
 	Super::BeginPlay();
-    MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASplatoon::OnBeginOverlap);
+    // Envie de me suicider que ce truc fasse crash unreal
+    // MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASplatoon::OnBeginOverlap);
 	
 }
 
@@ -59,16 +60,16 @@ void ASplatoon::OnBeginOverlap(UPrimitiveComponent* OverlappedComp, AActor* Othe
     if (OtherActor->ActorHasTag(TEXT("OnTheSurface")))
     {
         GLog->Log("Hit a surface");
-        FVector bulletLoc = this->GetActorLocation();
-        FRotator bulletrot = this->GetActorRotation();
-        FActorSpawnParameters bulletparam;
-        FRotator decalRot = UKismetMathLibrary::NormalizedDeltaRotator(bulletrot, FRotator(0.f, 0.0f, -90.0f));
-        ADecalActor* decal = GetWorld()->SpawnActor<ADecalActor>(bulletLoc, decalRot, bulletparam);
-        if (decal)
+        FVector BulletLocation = this->GetActorLocation();
+        FRotator BulletRotation = this->GetActorRotation();
+        FActorSpawnParameters BulletParameters;
+        FRotator DecalRotation = UKismetMathLibrary::NormalizedDeltaRotator(BulletRotation, FRotator(0.f, 0.0f, -90.0f));
+        ADecalActor* Decal = GetWorld()->SpawnActor<ADecalActor>(BulletLocation, DecalRotation, BulletParameters);
+        if (Decal)
         {
-            decal->SetDecalMaterial(DecalMat);
-            decal->GetDecal()->DecalSize = FVector(192.0f, 100.0f, 100.0f);
-            decal->SetLifeSpan(0.0);
+            Decal->SetDecalMaterial(DecalMat);
+            Decal->GetDecal()->DecalSize = FVector(192.0f, 100.0f, 100.0f);
+            Decal->SetLifeSpan(0.0);
 
         }
         else
