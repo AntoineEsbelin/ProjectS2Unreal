@@ -13,14 +13,28 @@ class PROJECTS2_API AFirstTrigger : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	AFirstTrigger();
+	AFirstTrigger();	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+		class UBoxComponent* OverlapVolume;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UFUNCTION()
+		void OverlapBegins(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	UFUNCTION()
+		void OverlapEnds(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
+
+	UPROPERTY(EditAnywhere)
+		FName LevelToLoad;
+
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
 
 };
