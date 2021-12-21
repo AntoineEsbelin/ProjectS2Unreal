@@ -55,6 +55,12 @@ public:
 
 protected:
 
+	UFUNCTION()
+		void Crouching();
+
+	UFUNCTION()
+		void UnCrouching();
+
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void Landed(const FHitResult& Hit) override;

@@ -79,6 +79,9 @@ void AProjectS2Character::SetupPlayerInputComponent(class UInputComponent* Playe
 	PlayerInputComponent->BindAction("Run", IE_Pressed, this, &AProjectS2Character::OnStartRun);
 	PlayerInputComponent->BindAction("Run", IE_Released, this, &AProjectS2Character::OnStopRun);
 
+	PlayerInputComponent->BindAction("Crouching", IE_Pressed, this, &AProjectS2Character::Crouching);
+	PlayerInputComponent->BindAction("Crouching", IE_Released, this, &AProjectS2Character::UnCrouching);
+
 	PlayerInputComponent->BindAxis("MoveForward", this, &AProjectS2Character::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AProjectS2Character::MoveRight);
 
@@ -248,6 +251,16 @@ void AProjectS2Character::MoveRight(float Value)
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
+}
+
+void AProjectS2Character::Crouching()
+{
+	Crouch();
+}
+
+void AProjectS2Character::UnCrouching()
+{
+	UnCrouch();
 }
 
 void AProjectS2Character::Tick(float DeltaTime)
